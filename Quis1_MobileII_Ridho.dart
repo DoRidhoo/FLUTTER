@@ -6,28 +6,36 @@ void main() {
     title : 'Routing Navigation',
     initialRoute : '/',
     routes : {
-      '/' : (context) => HalamanPertama(),
-      HalamanKedua.routeName : (context) => HalamanKedua(),
-      HalamanKetiga.routeName : (context) => HalamanKetiga(),
+      '/' : (context) => Menu_Utama(),
+      HalamanPertama.routeName : (context) => HalamanPertama(),
+      HalamanKedua.routeName   : (context) => HalamanKedua(),
+      HalamanKetiga.routeName  : (context) => HalamanKetiga(),
     },
   ));
 }
 
-class HalamanPertama extends StatelessWidget {
+class Menu_Utama extends StatelessWidget {
   @override
   Widget build (BuildContext context) {
     return Scaffold(
       appBar : AppBar(
-        title : Text ('Halaman Pertama'),
+        title : Text ('Menu Utama ((Quis1 M. Ridho Hanafi))'),
       ),
       body : Center(
         child : GridView.count(
-          crossAxisCount: 2,
+          crossAxisCount: 3,
             children:<Widget>[RaisedButton(
-              child : Text ('Pindah Halaman Kedua'),
+              child : Text ('Pindah Halaman Pertama'),
               onPressed: (){
 
-                Navigator.pushNamed(context, HalamanKedua.routeName);
+                Navigator.pushNamed(context, HalamanPertama.routeName);
+              },
+            ),
+            RaisedButton(
+              child : Text('Pindah Halaman Kedua'),
+              onPressed : (){
+
+                Navigator.pushReplacementNamed(context, HalamanKedua.routeName);
               },
             ),
             RaisedButton(
@@ -44,6 +52,26 @@ class HalamanPertama extends StatelessWidget {
   }
 }
 
+class HalamanPertama extends StatelessWidget {
+  static const String routeName = "/halamanPertama";
+  @override
+  Widget build(BuildContext context){
+    return Scaffold (
+      appBar : AppBar(
+        title : Text("Halaman Pertama"),
+      ),
+      body: Center(
+        child : RaisedButton(
+          child : Text('Kembali'),
+          onPressed:(){
+            Navigator.pop(context);
+          },
+        ),
+      ),
+    );
+  }
+}
+  
 class HalamanKedua extends StatelessWidget {
   static const String routeName = "/halamanKedua";
   @override
@@ -63,17 +91,22 @@ class HalamanKedua extends StatelessWidget {
     );
   }
 }
-  
-class  HalamanKetiga extends StatelessWidget {
+
+class HalamanKetiga extends StatelessWidget {
   static const String routeName = "/halamanKetiga";
   @override
   Widget build(BuildContext context){
-    return Scaffold(
+    return Scaffold (
       appBar : AppBar(
         title : Text("Halaman Ketiga"),
       ),
       body: Center(
-        child:Text('Halaman Ketiga'),
+        child : RaisedButton(
+          child : Text('Kembali'),
+          onPressed:(){
+            Navigator.pop(context);
+          },
+        ),
       ),
     );
   }
